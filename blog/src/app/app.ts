@@ -1,12 +1,31 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { BlogService, BlogEntry } from './blog/blog.service';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './app.html',
-  styleUrl: './app.scss'
+  styleUrls: ['./app.scss']
 })
-export class App {
-  protected title = 'blog';
+export class AppComponent implements OnInit {
+  blogs: BlogEntry[] = [];
+  loading = true;
+  error = false;
+
+  constructor(private blogService: BlogService) {}
+
+  ngOnInit(): void {
+    this.blogService.getBlogs().subscribe({
+      next: (data) => {
+        this.blogs = data;
+        this.loading = false;
+      },
+      error: () => {
+        this.error = true;
+        this.loading = false;
+      }
+    });
+  }
 }

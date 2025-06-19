@@ -1,0 +1,25 @@
+.container {
+  padding: 1rem;
+}
+
+.blog-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.blog-card {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 1rem;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  flex: 1 1 300px;
+}
+
+.meta {
+  font-size: 0.9rem;
+  color: #666;
+}
