@@ -1,0 +1,16 @@
+<h1>{{ title }}</h1>
+
+<div class="blog-container">
+  @if (blogEntries.length > 0) {
+    @for (entry of blogEntries; track entry.id) {
+      <div class="blog-card">
+        <h2>{{ entry.title }}</h2>
+        <p>from: {{ entry.author }}</p>
+        <p>Published at: {{ entry.publishDate | date:'shortDate' }}</p>
+        <button [routerLink]="['/detail', entry.id]">Show details</button>
+      </div>
+    }
+  } @else {
+    <p>Loading Blog entries.</p>
+  }
+</div>

@@ -1,66 +1,48 @@
 {
-  "name": "blog",
+  "name": "angular-blog",
   "version": "0.0.0",
   "engines": {
-    "node": "^22.12.0"
+    "node": ">=16.0.0"
   },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "build:azure": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:blog": "node dist/blog/server/server.mjs",
     "lint": "ng lint",
-    "format": "npx prettier --write ./src/app/*",
-    "prepare": "husky"
+    "prepare": "husky install",
+    "ng-update": "ng update"
   },
   "private": true,
   "dependencies": {
-    "@angular/common": "^20.0.0",
-    "@angular/compiler": "^20.0.0",
-    "@angular/core": "^20.0.0",
-    "@angular/forms": "^20.0.0",
-    "@angular/platform-browser": "^20.0.0",
-    "@angular/platform-server": "^20.0.0",
-    "@angular/router": "^20.0.0",
-    "@angular/ssr": "^20.0.0",
-    "@commitlint/cli": "^19.8.1",
-    "@commitlint/config-conventional": "^19.8.1",
-    "express": "^5.1.0",
-    "rxjs": "~7.8.0",
-    "tslib": "^2.3.0",
-    "zone.js": "~0.15.0"
+    "@angular/animations": "^18.2.13",
+    "@angular/cdk": "^17.3.10",
+    "@angular/common": "^18.2.13",
+    "@angular/compiler": "^18.2.13",
+    "@angular/core": "^18.2.13",
+    "@angular/forms": "^18.2.13",
+    "@angular/material": "^17.3.10",
+    "@angular/platform-browser": "^18.2.13",
+    "@angular/platform-browser-dynamic": "^18.2.13",
+    "@angular/router": "^18.2.13",
+    "rxjs": "^7.8.1",
+    "tslib": "^2.6.2",
+    "zone.js": "^0.14.2"
   },
   "devDependencies": {
-    "@angular/build": "^20.0.0",
-    "@angular/cli": "^20.0.0",
-    "@angular/compiler-cli": "^20.0.0",
-    "@types/express": "^5.0.1",
-    "@types/jasmine": "~5.1.0",
-    "@types/node": "^20.17.19",
-    "angular-eslint": "19.6.0",
-    "eslint": "^9.27.0",
+    "@angular-devkit/build-angular": "18.2.20",
+    "@angular/cli": "18.2.20",
+    "@angular/compiler-cli": "18.2.13",
+    "@types/jasmine": "^5.1.8",
+    "angular-eslint": "20.0.0",
+    "eslint": "^9.28.0",
     "husky": "^9.1.7",
-    "jasmine-core": "~5.7.0",
-    "karma": "~6.4.0",
-    "karma-chrome-launcher": "~3.2.0",
-    "karma-coverage": "~2.2.0",
-    "karma-jasmine": "~5.1.0",
-    "karma-jasmine-html-reporter": "~2.1.0",
-    "lint-staged": "^16.1.0",
-    "prettier": "^3.5.3",
-    "typescript": "~5.8.2",
-    "typescript-eslint": "8.32.1"
-  },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ]
+    "lint-staged": "^15.5.2",
+    "typescript": "^5.4.5",
+    "typescript-eslint": "8.33.1"
   },
   "lint-staged": {
-    "*.{ts,js,html}": "eslint --cache --fix",
-    "*.{ts,js,html,css,scss,less,md}": "prettier --write"
+    "*.{ts,html,scss}": "eslint --fix"
   }
 }
