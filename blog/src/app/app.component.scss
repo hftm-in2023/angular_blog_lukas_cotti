@@ -1,63 +1,41 @@
 :host {
-  display: block;
-  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-  color: #333;
-  background-color: #fff;
-  min-height: 100vh;
-}
-
-/* HEADER */
-header {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding: 1rem;
-  background-color: #ffffff;
-  border-bottom: 1px solid #e0e0e0;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+  min-height: 100vh;
+  background-color: #f9fafb;
+  font-family: 'Roboto', sans-serif;
 }
 
-header h1 {
-  margin: 0;
-  font-size: 1.75rem;
-  color: #222;
-}
-
-header nav {
-  margin-top: 0.75rem;
+// Toolbar Styling
+mat-toolbar {
+  background: #2563eb;   // Primärfarbe
+  color: #fff;
   display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
+  align-items: center;
+  padding: 0 1rem;
 
-header nav a {
-  text-decoration: none;
-  color: #007acc;
-  font-weight: 500;
-  transition: color 0.2s ease;
+  .example-icon {
+    color: #fff;
 
-  &:hover,
-  &:focus {
-    color: #005fa3;
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+    }
+  }
+
+  span {
+    font-weight: 500;
+    font-size: 1.2rem;
+  }
+
+  .flex-fill {
+    flex: 1; // sorgt dafür, dass der Titel links und Buttons rechts stehen
   }
 }
 
-/* MAIN CONTENT */
-main {
-  padding: 2rem 1rem;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-/* RESPONSIVE HEADER */
-@media (min-width: 600px) {
-  header {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  header nav {
-    margin-top: 0;
-  }
+// Main Content
+router-outlet {
+  flex: 1;
+  display: block;
+  padding: 1.5rem;
 }

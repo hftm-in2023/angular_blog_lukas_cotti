@@ -1,0 +1,43 @@
+<mat-card class="blog-item m-10" appearance="outlined">
+  <mat-card-header class="mb-10">
+    <div mat-card-avatar>
+      <img
+        mat-card-image
+        class="author-image"
+        src="{{ blogItem.authorAvatar }}"
+        alt="{{ blogItem.title }}"
+      />
+    </div>
+    <mat-card-title>{{ blogItem.author }}</mat-card-title>
+    <mat-card-subtitle>{{
+      formatDate(blogItem.createdAt, "dd.MM.yyyy HH:mm", "de-CH")
+    }}</mat-card-subtitle>
+  </mat-card-header>
+  <img
+    mat-card-image
+    src="{{ blogItem.headerImageUrl }}"
+    alt="{{ blogItem.title }}"
+  />
+  <mat-card-content>
+    <div class="d-flex align-items-center mt-5 mb-5">
+      <div class="title-container">
+        <h3 class="m-0 p-0 mb-5 blog-title">{{ blogItem.title }}</h3>
+        <div class="d-flex">
+          <p class="m-0 p-0">Likes: {{ blogItem.likes }}</p>
+          <p class="m-0 p-0 mr-10 ml-10">&bull;</p>
+          <p class="m-0 p-0">Comments: {{ blogItem.comments }}</p>
+        </div>
+      </div>
+      <span class="flex-fill"></span>
+      <mat-card-actions>
+        <button matIconButton aria-label="Like Blog item">
+          <mat-icon>favorite</mat-icon>
+        </button>
+        <button matIconButton aria-label="Share Blog item">
+          <mat-icon>share</mat-icon>
+        </button>
+      </mat-card-actions>
+    </div>
+    <p class="m-0 mt-10">{{ blogItem.contentPreview }}</p>
+  </mat-card-content>
+</mat-card>
