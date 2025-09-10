@@ -1,0 +1,14 @@
+<!-- <h1>{{title}}</h1>
+
+<Demo
+  (modeChange)="onModeChange($event)"
+  [mode]="'indeterminate'"
+  [value]="50"
+/> -->
+
+<BlogHeader />
+@if (isLoading()) {
+<mat-progress-bar mode="indeterminate"></mat-progress-bar>
+} @else {
+<router-outlet></router-outlet>
+}

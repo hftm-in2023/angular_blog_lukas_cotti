@@ -1,7 +1,0 @@
-<div class="d-flex align-items-center justify-content-center flex-wrap blog-list">
-  @for (blogItem of blogItems; track blogItem.id) {
-    <a [routerLink]="['/blog', blogItem.id]">
-      <app-blog-item [blogItem]="blogItem"></app-blog-item>
-    </a>
-  }
-</div>

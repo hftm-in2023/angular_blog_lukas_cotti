@@ -1,27 +1,35 @@
-import { Routes } from '@angular/router';
-import { blogOverviewResolver } from './features/blog/blog-overview/blog-overview.resolver';
-import { blogPostResolver } from './features/blog/blog-post/blog-post.resolver';
+import { inject } from '@angular/core';
+import { ResolveFn, Routes } from '@angular/router';
+import { lastValueFrom } from 'rxjs';
+import { BlogBackend, Entries } from './core/blog/blog-backend';
+import { ERROR_ROUTES } from './core/error';
+import { STATIC_ROUTES } from './core/static';
 
-export const routes: Routes = [
+export const entriesResolver: ResolveFn<Entries> = async () => {
+  const blogBackendService = inject(BlogBackend);
+  return await lastValueFrom(blogBackendService.getBlogPosts());
+};
+
+export const APP_ROUTES: Routes = [
   {
-    path: 'blog/:id',
-    loadComponent: () =>
-      import('./features/blog/blog-post/blog-post.component').then(
-        (m) => m.BlogPostComponent,
-      ),
-    resolve: {
-      blogData: blogPostResolver,
-    },
+    path: '',
+    redirectTo: 'overview',
+    pathMatch: 'full',
+  },
+  {
+    path: 'demo',
+    loadComponent: () => import('./feature/demo/demo'),
   },
   {
     path: 'overview',
-    loadComponent: () =>
-      import('./features/blog/blog-overview/blog-overview.component').then(
-        (m) => m.BlogOverviewComponent,
-      ),
-    resolve: {
-      overviewData: blogOverviewResolver,
-    },
+    loadComponent: () => import('./feature/blog-overview/blog-overview-page'),
+    resolve: { model: entriesResolver },
+    runGuardsAndResolvers: 'always',
   },
-  { path: '', redirectTo: '/overview', pathMatch: 'full' },
+  {
+    path: 'detail/:id',
+    loadComponent: () => import('./feature/blog-detail/blog-detail-page'),
+  },
+  ...ERROR_ROUTES,
+  ...STATIC_ROUTES,
 ];
