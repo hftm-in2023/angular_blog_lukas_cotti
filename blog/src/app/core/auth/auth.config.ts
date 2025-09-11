@@ -15,4 +15,4 @@ export const authConfig: PassedInitialConfig = {
     renewTimeBeforeTokenExpiresInSeconds: 10,
     secureRoutes: [environment.serviceUrl],
   },
-}
+};
