@@ -12,6 +12,7 @@ import { AddBlogFormComponent } from './add-blog-form';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { of, Observable, timer } from 'rxjs';
 import { switchMap, map, catchError } from 'rxjs/operators';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-add-blog',
@@ -41,7 +42,16 @@ export default class AddBlogPage {
   saving = false;
   saveError: string | null = null;
 
-  constructor(private fb: FormBuilder, private http: HttpClient) {}
+  // Gerätetyp für Anzeige im Template
+  deviceType: 'mobile' | 'tablet' | 'desktop' = 'desktop';
+
+  constructor(
+    private fb: FormBuilder,
+    private http: HttpClient,
+    private breakpointObserver: BreakpointObserver
+  ) {
+    this.observeBreakpoints();
+  }
 
   /** asynchroner Validator: prüft ob Titel schon existiert */
   private titleUniqueValidator(): AsyncValidatorFn {
@@ -62,6 +72,20 @@ export default class AddBlogPage {
         )
       );
     };
+  }
+
+  private observeBreakpoints() {
+    this.breakpointObserver
+      .observe([Breakpoints.Handset, Breakpoints.Tablet, Breakpoints.Web])
+      .subscribe((result) => {
+        if (result.breakpoints[Breakpoints.Handset]) {
+          this.deviceType = 'mobile';
+        } else if (result.breakpoints[Breakpoints.Tablet]) {
+          this.deviceType = 'tablet';
+        } else if (result.breakpoints[Breakpoints.Web]) {
+          this.deviceType = 'desktop';
+        }
+      });
   }
 
   onSubmit() {

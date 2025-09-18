@@ -25,10 +25,26 @@ textarea {
 
 .actions {
   display: flex;
+  flex-direction: column; /* Mobile-Ansicht */
   gap: 0.5rem;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .spinner {
   margin-top: 0.5rem;
+}
+
+/* Tablet ab 768px */
+@media (min-width: 768px) {
+  .actions {
+    flex-direction: row; /* Buttons nebeneinander */
+  }
+}
+
+/* Desktop ab 1024px */
+@media (min-width: 1024px) {
+  :host {
+    max-width: 800px;
+    margin: 0 auto; /* zentrieren */
+  }
 }

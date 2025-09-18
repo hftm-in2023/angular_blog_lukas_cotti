@@ -1,4 +1,18 @@
 <ng-container *ngIf="form">
+  <h2>Neuen Blog erstellen</h2>
+
+  @switch (deviceType) {
+    @case ('mobile') {
+      <p><em>Du nutzt gerade die Mobile-Ansicht 📱</em></p>
+    }
+    @case ('tablet') {
+      <p><em>Tablet-Ansicht aktiv 📲</em></p>
+    }
+    @default {
+      <p><em>Desktop-Ansicht 💻</em></p>
+    }
+  }
+
   <app-add-blog-form
     [form]="form"
     [saving]="saving"
