@@ -1,0 +1,9 @@
+<ng-container *ngIf="form">
+  <app-add-blog-form
+    [form]="form"
+    [saving]="saving"
+    [saveError]="saveError"
+    (submitForm)="onSubmit()"
+    (resetForm)="onReset()"
+  ></app-add-blog-form>
+</ng-container>
