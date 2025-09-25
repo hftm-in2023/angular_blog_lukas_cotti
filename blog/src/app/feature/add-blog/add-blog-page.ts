@@ -27,17 +27,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
   styleUrls: ['./add-blog-page.scss'],
 })
 export default class AddBlogPage {
-  form = this.fb.group({
-    title: [
-      '',
-      {
-        validators: [Validators.required, Validators.minLength(3)],
-        asyncValidators: [this.titleUniqueValidator()],
-        updateOn: 'blur',
-      },
-    ],
-    content: ['', [Validators.required, Validators.minLength(10)]],
-  });
+  form!: ReturnType<FormBuilder['group']>; // <- mit ! markiert, wird im ctor gesetzt
 
   saving = false;
   saveError: string | null = null;
@@ -50,6 +40,19 @@ export default class AddBlogPage {
     private http: HttpClient,
     private breakpointObserver: BreakpointObserver
   ) {
+    // FormGroup initialisieren
+    this.form = this.fb.group({
+      title: [
+        '',
+        {
+          validators: [Validators.required, Validators.minLength(3)],
+          asyncValidators: [this.titleUniqueValidator()],
+          updateOn: 'blur',
+        },
+      ],
+      content: ['', [Validators.required, Validators.minLength(10)]],
+    });
+
     this.observeBreakpoints();
   }
 
