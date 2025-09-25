@@ -1,20 +1,27 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { MatProgressBar } from '@angular/material/progress-bar';
-import { RouterStore } from './core/state/router';
-import { HeaderComponent } from './core/layout/header';
+import { SidebarComponent } from './core/sidebar/sidebar.component';
+
+// Angular Material (nur wenn du sie im Root auch brauchst)
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
 
 @Component({
-  selector: 'App',
-  imports: [RouterOutlet, HeaderComponent, MatProgressBar],
+  selector: 'app-root',
+  standalone: true,
+  imports: [
+    RouterOutlet,
+    SidebarComponent,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatIconModule,
+    MatListModule
+  ],
   templateUrl: './app.html',
-  styleUrl: './app.scss',
+  styleUrls: ['./app.scss']
 })
-export class App {
-  isLoading = inject(RouterStore).isLoading;
-
-  onModeChange($event: string) {
-    console.log(`event fired ${$event}`);
-  }
-  protected title = 'blogapp-20';
-}
+export class AppComponent {}
