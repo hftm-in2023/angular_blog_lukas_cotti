@@ -1,0 +1,56 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+  <div class="field">
+    <label for="title">Titel</label>
+    <input id="title" formControlName="title" />
+    <div
+      class="error"
+      *ngIf="form.get('title')?.touched && form.get('title')?.invalid"
+    >
+      <small *ngIf="form.get('title')?.errors?.['required']">
+        Titel ist erforderlich.
+      </small>
+      <small *ngIf="form.get('title')?.errors?.['minlength']">
+        Mindestens 3 Zeichen.
+      </small>
+      <small *ngIf="form.get('title')?.errors?.['titleTaken']">
+        Dieser Titel existiert bereits.
+      </small>
+    </div>
+  </div>
+
+  <div class="field">
+    <label for="content">Content</label>
+    <textarea id="content" formControlName="content" rows="8"></textarea>
+    <div
+      class="error"
+      *ngIf="form.get('content')?.touched && form.get('content')?.invalid"
+    >
+      <small *ngIf="form.get('content')?.errors?.['required']">
+        Content ist erforderlich.
+      </small>
+      <small *ngIf="form.get('content')?.errors?.['minlength']">
+        Mindestens 10 Zeichen.
+      </small>
+    </div>
+  </div>
+
+  <div class="actions">
+    <!-- Speichern nur sichtbar, wenn Formular valide -->
+    <button type="submit" *ngIf="form.valid && !saving">Speichern</button>
+
+    <!-- Während Speichern -->
+    <button type="button" disabled *ngIf="saving">
+      Speichern... (bitte warten)
+    </button>
+
+    <button type="button" (click)="onReset()">Zurücksetzen</button>
+  </div>
+
+  <div class="spinner" *ngIf="saving">
+    <p>Speichern…</p>
+  </div>
+
+  <div class="save-error" *ngIf="saveError">
+    <p>{{ saveError }}</p>
+  </div>
+</form>
